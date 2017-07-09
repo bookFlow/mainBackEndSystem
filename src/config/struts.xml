@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 将Action的创建交给spring来管理 -->  
+    <constant name="struts.objectFactory" value="spring" />  
+    <constant name="struts.action.extension" value=","></constant>
+	<package name="actionPackage" namespace="/" extends="struts-default, json-default">
+		<action name="LoginAction" class="com.wkzhng.action.LoginAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="RegisterAction" class="com.wkzhng.action.RegisterAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="SearchBooksByBookNameAction" class="com.wkzhng.action.SearchBooksByBookNameAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="SearchBooksByPositionAction" class="com.wkzhng.action.SearchBooksByPositionAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="SearchBookByBookIdAction" class="com.wkzhng.action.SearchBookByBookIdAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="GetSimBookDetailsByNameAction" class="com.wkzhng.action.GetSimBookDetailsByNameAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="SearchPeoplesByPeopleNameAction" class="com.wkzhng.action.SearchPeoplesByPeopleNameAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="SearchPeopleByPeopleIdAction" class="com.wkzhng.action.SearchPeopleByPeopleIdAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="BuyBookAction" class="com.wkzhng.action.BuyBookAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="SaleBookAction" class="com.wkzhng.action.SaleBookAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="GetRankOrRestmoneyAction" class="com.wkzhng.action.GetRankOrRestmoneyAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="AddCommentAction" class="com.wkzhng.action.AddCommentAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		<action name="SearchBooksByRecordAction" class="com.wkzhng.action.SearchBooksByRecordAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+		
+		<action name="GetConversationDetailAction" class="com.wkzhng.action.GetConversationDetailAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	
+		<action name="GetMsgFromLastAction" class="com.wkzhng.action.GetMsgFromLastAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	
+		<action name="GetNewMsgNumAction" class="com.wkzhng.action.GetNewMsgNumAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	
+		<action name="GetRecordNewestStatusAction" class="com.wkzhng.action.GetRecordNewestStatusAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	
+		<action name="GetRecordWithStatusAction" class="com.wkzhng.action.GetRecordWithStatusAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	
+		<action name="IsDealingAction" class="com.wkzhng.action.IsDealingAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	
+		<action name="SendMsgAction" class="com.wkzhng.action.SendMsgAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	
+		<action name="UpdateRecordStatusAction" class="com.wkzhng.action.UpdateRecordStatusAction">
+			<result type="json">
+        		<param name="root">dataMap</param> 
+        	</result>
+		</action>
+	</package>
+</struts>
