@@ -3,6 +3,8 @@ package com.wkzhng.action;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -94,11 +96,7 @@ public class GetConversationDetailAction implements Action{
 		dataMap.put("rStatus", record.getStatus());
 		
 		Set<Message> messageSet = record.getMessages();
-		List<Message> messageList = new ArrayList<>();
-		Iterator<Message> it = messageSet.iterator();
-		while(it.hasNext()){
-			messageList.add(it.next());
-		}
+		List<Message> messageList = orderSetToList(messageSet);
 		
 		List<Map<String, Object>> messageMaps = new ArrayList<>();
 		for(Message message: messageList){
@@ -120,4 +118,11 @@ public class GetConversationDetailAction implements Action{
 		
 		return SUCCESS;
 	}
+	private List<Message> orderSetToList(Set<Message> messageSet){
+	    
+	    List<Message> messageList = new ArrayList<>();
+        messageList.addAll(messageSet);
+	    Collections.sort((messageList));
+	    return messageList;
+	}	
 }

@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * Message entity. @author MyEclipse Persistence Tools
  */
 
-public class Message implements java.io.Serializable {
+public class Message implements java.io.Serializable ,Comparable<Message>{
 
 	// Fields
 
@@ -143,5 +143,11 @@ public class Message implements java.io.Serializable {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
+
+    @Override
+    public int compareTo(Message o) {
+        // TODO Auto-generated method stub
+        return this.time.compareTo(o.getTime());
+    }
 
 }
