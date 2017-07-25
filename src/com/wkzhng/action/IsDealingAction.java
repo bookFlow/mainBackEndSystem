@@ -6,7 +6,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.opensymphony.xwork2.Action;
+import com.wkzhng.entity.Book;
 import com.wkzhng.entity.Record;
+import com.wkzhng.service.IBookManage;
 import com.wkzhng.service.IRecordManage;
 
 public class IsDealingAction implements Action{
@@ -14,9 +16,29 @@ public class IsDealingAction implements Action{
 	@Resource
 	IRecordManage recordManage;
 	
+	@Resource
+	IBookManage bookManage;
+	
 	String bid;
+	String uid;
 	
 	Map<String, Object> dataMap;
+	
+	public IBookManage getBookManage() {
+		return bookManage;
+	}
+	
+	public void setBookManage(IBookManage bookManage) {
+		this.bookManage = bookManage;
+	}
+	
+	public String getUid() {
+		return uid;
+	}
+	
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	
 	public String getBid() {
 		return bid;
@@ -46,26 +68,17 @@ public class IsDealingAction implements Action{
 	public String execute(){
 		System.out.println("IsDealingAction is working...");
 		dataMap = new HashMap<>();
-		int status = 0;
-		Record record = recordManage.getRecordById(Integer.parseInt(bid));
-		if(record == null){
+		Record record = recordManage.getRecordByBookIdAndBid(uid, Integer.parseInt(bid));
+		Book book = bookManage.getBookById(Integer.parseInt(bid));
+		if(book.getStatus() == 0)
 			dataMap.put("candeal", true);
+		else
+			dataMap.put("candeal", false);
+		if(record == null){
 			dataMap.put("isInYourDeal", false);
 		}
 		else{
-		status = record.getStatus();
-			if(status == 4){
-				dataMap.put("candeal", true);
-				dataMap.put("isInYourDeal", false);
-			}
-			else if(status == 5){
-				dataMap.put("candeal", false);
-				dataMap.put("isInYourDeal", false);
-			}
-			else{
-				dataMap.put("candeal", false);
-				dataMap.put("isInYourDeal", true);
-			}
+			dataMap.put("isInYourDeal", true);
 		}
 		return SUCCESS;
 	}

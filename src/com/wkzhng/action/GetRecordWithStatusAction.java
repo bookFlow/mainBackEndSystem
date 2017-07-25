@@ -88,7 +88,10 @@ public class GetRecordWithStatusAction implements Action{
 			Map<String, Object> resultMap = new HashMap<>();
 			resultMap.put("rId", record.getRecordid());
 			resultMap.put("rStatus", record.getStatus());
-			resultMap.put("ownerId", record.getSid());
+			if(Integer.parseInt(type) == 0)
+				resultMap.put("ownerId", record.getSid());
+			else
+				resultMap.put("ownerId", record.getBid());
 			resultMap.put("bId", record.getBookid());
 			Book book = bookManage.getBookById(record.getBookid());
 			resultMap.put("bookName", book.getName());

@@ -20,7 +20,10 @@
             <column name="bookid" not-null="true" />
         </property>
         <property name="dateOk" type="java.sql.Timestamp">
-            <column name="dateOK" length="6" not-null="true" />
+            <column name="dateOK"/>
+        </property>
+        <property name="dateE" type="java.sql.Timestamp">
+            <column name="dateE" not-null="true" />
         </property>
         <property name="x" type="java.lang.Double">
             <column name="x" precision="22" scale="0" not-null="true" />

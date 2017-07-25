@@ -58,8 +58,7 @@ public class GetSimBookDetailsByNameAction implements Action{
 			bookMap.put("productor", bookDetails.getEditor());
 			bookMap.put("company", bookDetails.getPublishingCompany());
 			bookMap.put("price", bookDetails.getPrice());
-			//bookMap.put("image", bookDetails.getImages());
-			bookMap.put("images", JSONArray.fromObject(new ArrayList<Map<String, Object>>()));
+			bookMap.put("images", bookDetails.getImages());
 			bookMaps.add(bookMap);
 		}
 		JSONArray bookMapsJson = JSONArray.fromObject(bookMaps);

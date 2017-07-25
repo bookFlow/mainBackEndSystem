@@ -1,5 +1,6 @@
 package com.wkzhng.dao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,26 +26,27 @@ public class BookDaoImpl implements IBookDao {
 	}
 	
 	@Override
-	public int addBook(String name, String type, Double x, Double y, String userName){
+	public int addBook(String name, String type, Double x, Double y, String userName, long time){
 		System.out.println("BookDaoImpl is working...addBook");
 		Session session = getSessionFactory().getCurrentSession();
 		Book book = new Book();
 		book.setName(name);
 		book.setType(type);
-		book.setStatus(false);
+		book.setStatus(0);
 		book.setX(x);
 		book.setY(y);
+		book.setDate(new Timestamp(time));
 		book.setPeople((People)session.load(People.class, userName));
 		session.save(book);
 		return book.getId();
 	}
 	
 	@Override
-	public String change_book_status(int id){
+	public String change_book_status(int id, int status){
 		System.out.println("BookDaoImpl is working...change_book_status");
 		Session session = getSessionFactory().getCurrentSession();
 		Book book = (Book)session.load(Book.class, id);
-		book.setStatus(true);
+		book.setStatus(status);
 	    session.update(book); 
 		return Const.SUCCEED;
 	}

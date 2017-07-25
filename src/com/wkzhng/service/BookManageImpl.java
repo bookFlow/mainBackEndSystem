@@ -70,16 +70,17 @@ public class BookManageImpl implements IBookManage{
 	}
 	
 	@Override
-	public String modifyStatus(int bookId){
+	public String modifyStatus(int bookId, int status){
 		System.out.println("BookManageImpl is working...modifyStatus");
-		return bookDao.change_book_status(bookId);
+		return bookDao.change_book_status(bookId, status);
 	}
 	
 	@Override
-	public String addBook(String userName, String name, Double x, Double y, String description, 
+	public String addBook(String userName, String name, Double x, Double y, long time, String description, 
 			String productor, String company, String images, Double price, String pName){
 		System.out.println("BookManageImpl is working...addBook");
-		int bookId = bookDao.addBook(name, "", x, y, userName);
-		return bookDetailsDao.addBookDetails(bookId, "", pName, productor, company, images, price, description);
+		int bookId = bookDao.addBook(name, "", x, y, userName, time);
+		return bookDetailsDao.addBookDetails(bookId, "", pName, productor, company, images, price, 
+				description);
 	}
 }

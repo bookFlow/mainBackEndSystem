@@ -95,6 +95,7 @@
 	</bean>
 	
 	<bean name="IsDealingAction" class="com.wkzhng.action.IsDealingAction" scope="prototype">
+		<property name="bookManage" ref="bookManage"></property>
 		<property name="recordManage" ref="recordManage"></property>
 	</bean>
 	
@@ -122,6 +123,7 @@
 	</bean>
 	
 	<bean name="recordManage" class="com.wkzhng.service.RecordManageImpl">
+		<property name="bookDao" ref="bookDao"></property>
 		<property name="recordDao" ref="recordDao"></property>
 	</bean>
 	

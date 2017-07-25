@@ -1,5 +1,6 @@
 package com.wkzhng.entity;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +17,10 @@ public class Book implements java.io.Serializable {
 	private People people;
 	private String type;
 	private String name;
-	private Boolean status;
+	private int status;
 	private Double x;
 	private Double y;
+	private Timestamp date;
 	private Set<Comment> comments = new HashSet<Comment>(0);
 
 	// Constructors
@@ -28,8 +30,8 @@ public class Book implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Book(People people, String type, String name, Boolean status,
-			Double x, Double y, Set<Comment> comments) {
+	public Book(People people, String type, String name, int status,
+			Double x, Double y, Set<Comment> comments, Timestamp date) {
 		this.people = people;
 		this.type = type;
 		this.name = name;
@@ -37,10 +39,19 @@ public class Book implements java.io.Serializable {
 		this.x = x;
 		this.y = y;
 		this.comments = comments;
+		this.date = date;
 	}
 
 	// Property accessors
 
+	public Timestamp getDate() {
+		return date;
+	}
+	
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+	
 	public Integer getId() {
 		return this.id;
 	}
@@ -73,11 +84,11 @@ public class Book implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Boolean getStatus() {
+	public int getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

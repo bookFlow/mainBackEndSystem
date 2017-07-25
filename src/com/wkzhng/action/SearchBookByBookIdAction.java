@@ -1,6 +1,9 @@
 package com.wkzhng.action;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,8 +81,9 @@ public class SearchBookByBookIdAction implements Action{
 		det.put("productor", bookDetails.getEditor());
 		det.put("company", bookDetails.getPublishingCompany());
 		det.put("price", bookDetails.getPrice());
-		//det.put("image", bookDetails.getImages());
-		det.put("images", JSONArray.fromObject(new ArrayList<Map<String, Object>>()));
+		det.put("images", bookDetails.getImages());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		det.put("date", dateFormat.format(new Date(book.getDate().getTime())));
 		JSONObject detJson = JSONObject.fromObject(det);
 		dataMap.put("det", detJson);
 		List<Map<String, Object>> comts = new ArrayList<>();

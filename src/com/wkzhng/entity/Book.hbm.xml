@@ -19,7 +19,7 @@
         <property name="name" type="java.lang.String">
             <column name="name" length="45" not-null="true" />
         </property>
-        <property name="status" type="java.lang.Boolean">
+        <property name="status" type="java.lang.Integer">
             <column name="status" not-null="true" />
         </property>
          <property name="x" type="java.lang.Double">
@@ -27,6 +27,9 @@
         </property>
         <property name="y" type="java.lang.Double">
             <column name="y" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="date" type="java.sql.Timestamp">
+            <column name="date" not-null="true" />
         </property>
         <set name="comments" inverse="true">
             <key>

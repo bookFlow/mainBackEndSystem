@@ -18,6 +18,7 @@ public class Record implements java.io.Serializable {
 	private String sid;
 	private Integer bookid;
 	private Timestamp dateOk;
+	private Timestamp dateE;
 	private Double x;
 	private Double y;
 	private String pname;
@@ -31,12 +32,12 @@ public class Record implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Record(String bid, String sid, Integer bookid, Timestamp dateOk,
+	public Record(String bid, String sid, Integer bookid, Timestamp dateE,
 			Double x, Double y, String pname, Integer status) {
 		this.bid = bid;
 		this.sid = sid;
 		this.bookid = bookid;
-		this.dateOk = dateOk;
+		this.dateE = dateE;
 		this.x = x;
 		this.y = y;
 		this.pname = pname;
@@ -44,6 +45,14 @@ public class Record implements java.io.Serializable {
 	}
 
 	// Property accessors
+	
+	public Timestamp getDateE() {
+		return dateE;
+	}
+	
+	public void setDateE(Timestamp dateE) {
+		this.dateE = dateE;
+	}
 
 	public Integer getRecordid() {
 		return this.recordid;

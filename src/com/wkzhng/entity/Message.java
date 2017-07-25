@@ -18,6 +18,7 @@ public class Message implements java.io.Serializable {
 	private Integer type;
 	private Integer class_;
 	private Integer operation;
+	private Timestamp btime;
 	private Timestamp time;
 	private Double x;
 	private Double y;
@@ -31,7 +32,7 @@ public class Message implements java.io.Serializable {
 
 	/** full constructor */
 	public Message(Record record, String uid, String content, Integer type, Integer class_,
-			Integer operation, Timestamp time, Double x, Double y, String pname) {
+			Integer operation, Timestamp btime, Timestamp time, Double x, Double y, String pname) {
 		this.uid = uid;
 		this.record = record;
 		this.content = content;
@@ -42,10 +43,19 @@ public class Message implements java.io.Serializable {
 		this.x = x;
 		this.y = y;
 		this.pname = pname;
+		this.btime = btime;
 	}
 
 	// Property accessors
 
+	public Timestamp getBtime() {
+		return btime;
+	}
+	
+	public void setBtime(Timestamp btime) {
+		this.btime = btime;
+	}
+	
 	public String getUid() {
 		return uid;
 	}

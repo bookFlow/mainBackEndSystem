@@ -102,7 +102,7 @@ public class SearchBooksByRecordAction implements Action{
 		else if(type.equals("2")){
 			List<Book> hasBooks = peopleManage.getBooks(uid);
 			for(Book book: hasBooks){
-				if(book.getStatus() == true){
+				if(book.getStatus() == 2){
 					resultBooks.add(book);
 				}
 			}
@@ -110,9 +110,16 @@ public class SearchBooksByRecordAction implements Action{
 		else if(type.equals("3")){
 			List<Book> hasBooks = peopleManage.getBooks(uid);
 			for(Book book: hasBooks){
-				if(book.getStatus() == false){
+				if(book.getStatus() != 2){
 					resultBooks.add(book);
 				}
+			}
+		}
+		else if(type.equals("4")){
+			List<Record> records = recordManage.getBuyingBooks(uid);
+			for(Record record: records){
+				resultBooks.add(bookManage.getBookById(record.getBookid()));
+				resultTime.add(new Date(record.getDateOk().getTime()));
 			}
 		}
 		
@@ -137,8 +144,9 @@ public class SearchBooksByRecordAction implements Action{
 			det.put("productor", bookDetails.getEditor());
 			det.put("company", bookDetails.getPublishingCompany());
 			det.put("price", bookDetails.getPrice());
-			//det.put("image", bookDetails.getImages());
-			det.put("images", JSONArray.fromObject(new ArrayList<Map<String, Object>>()));
+			det.put("images", bookDetails.getImages());
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			det.put("date", dateFormat.format(new Date(book.getDate().getTime())));
 			JSONObject detJson = JSONObject.fromObject(det);
 			bookMap.put("det", detJson);
 			List<Map<String, Object>> comts = new ArrayList<>();

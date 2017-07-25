@@ -34,9 +34,9 @@ public class MessageManageImpl implements IMessageManage{
 	
 	@Override
 	public String addMessage(String content, int rid, String uid, int type, int class_, long time, 
-			double x, double y, String pName){
+			double x, double y, String pName, long btime){
 		System.out.println("MessageManageImpl is working...addMessage");
-		return messageDao.addMessage(content, rid, uid, type, class_, time, x, y, pName);
+		return messageDao.addMessage(content, rid, uid, type, class_, time, x, y, pName, btime);
 	}
 	
 	@Override

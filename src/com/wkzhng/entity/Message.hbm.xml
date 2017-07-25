@@ -29,7 +29,10 @@
             <column name="operation" not-null="true" />
         </property>
         <property name="time" type="java.sql.Timestamp">
-            <column name="time" length="6" not-null="true" />
+            <column name="time" not-null="true" />
+        </property>
+        <property name="btime" type="java.sql.Timestamp">
+            <column name="btime" not-null="true" />
         </property>
         <property name="x" type="java.lang.Double">
             <column name="x" precision="22" scale="0"/>

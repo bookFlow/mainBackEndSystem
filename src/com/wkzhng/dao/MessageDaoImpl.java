@@ -24,7 +24,7 @@ private SessionFactory SessionFactory;
 	
 	@Override
 	public String addMessage(String content, int rid, String uid, int type,int class_, long time, 
-			double x, double y, String PName) {
+			double x, double y, String PName, long btime) {
 		System.out.println("MessageDaoImpl is working...addMessage");
 		Session session = getSessionFactory().getCurrentSession();
 		Message message = new Message();
@@ -38,6 +38,7 @@ private SessionFactory SessionFactory;
 		message.setY(y);
 		message.setOperation(0);
 		message.setPname(PName);
+		message.setBtime(new Timestamp(btime));
 		session.save(message);
 		return Const.SUCCEED;
 	}

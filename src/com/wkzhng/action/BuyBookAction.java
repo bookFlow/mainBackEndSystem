@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 
 import com.opensymphony.xwork2.Action;
 import com.wkzhng.constv.Const;
+import com.wkzhng.entity.Record;
 import com.wkzhng.service.IBookManage;
 import com.wkzhng.service.IPeopleManage;
 import com.wkzhng.service.IRecordManage;
@@ -120,16 +121,22 @@ public class BuyBookAction implements Action{
 		dataMap = new HashMap<>();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = dateFormat.parse(time);
-		String result1 = recordManage.addRecord(uid, Integer.parseInt(bid), date.getTime(), 
+		Record record = recordManage.getRecordByBookIdAndBid(uid, Integer.parseInt(bid));
+		String result1 = "";
+		if(record == null)
+			result1 = recordManage.addRecord(uid, Integer.parseInt(bid), date.getTime(), 
 				Double.parseDouble(x), Double.parseDouble(y), pname);
+		else
+			result1 = recordManage.updateStatus(record.getRecordid(), 0, 3);
+		bookManage.modifyStatus(Integer.parseInt(bid), 2);
 		if(result1.equals(Const.SUCCEED)){
 			dataMap.put("isSucceed", true);
 		}
 		else{
 			dataMap.put("isSucceed", false);
 		}
-		Double restMoney = peopleManage.getMoney(uid);
-		dataMap.put("restMoney", restMoney);
+		dataMap.put("rid", recordManage.getRecordByBookIdAndBid(uid, Integer.parseInt(bid)).getRecordid());
+		
 		return SUCCESS;
 	}
 }

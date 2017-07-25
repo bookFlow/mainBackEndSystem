@@ -6,6 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +36,7 @@ public class SaleBookAction implements Action{
     private String company;
     private String price;
     private String pname;
+    private String date;
     
     private List<File> image;
 	
@@ -70,6 +75,14 @@ public class SaleBookAction implements Action{
     
     public void setImageFileName(List<String> imageFileName) {
 		this.imageFileName = imageFileName;
+	}
+    
+    public String getDate() {
+		return date;
+	}
+    
+    public void setDate(String date) {
+		this.date = date;
 	}
     
     public String getPname() {
@@ -152,7 +165,7 @@ public class SaleBookAction implements Action{
 	}
     
     @Override
-    public String execute(){
+    public String execute() throws ParseException{
     	System.out.println("SaleBookAction is working");
     	dataMap = new HashMap<>();
     	
@@ -187,8 +200,11 @@ public class SaleBookAction implements Action{
     	
 		System.out.println(images);
 		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date1 = dateFormat.parse(date);
+		
     	String result = bookManage.addBook(uid, name, Double.parseDouble(x), Double.parseDouble(y), 
-    			des, productor, company, images, Double.parseDouble(price), pname);
+    			date1.getTime(), des, productor, company, images, Double.parseDouble(price), pname);
     	if(result.equals(Const.SUCCEED))
     		dataMap.put("isSucceed", true);
     	else

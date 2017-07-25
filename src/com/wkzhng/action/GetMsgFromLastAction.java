@@ -97,11 +97,13 @@ public class GetMsgFromLastAction implements Action{
 			messageMap.put("mid", message.getMid());
 			String uid = message.getUid();
 			messageMap.put("uid", uid);
+			messageMap.put("msg", message.getContent());
 			messageMap.put("uname", peopleManage.getPeopleDetailInfo(uid).getName());
 			messageMap.put("type", message.getType());
 			messageMap.put("class_", message.getClass_());
 			messageMap.put("operation", message.getOperation());
 			messageMap.put("time", dateFormat.format(new Date(message.getTime().getTime())));
+			messageMap.put("btime", dateFormat.format(new Date(message.getBtime().getTime())));
 			messageMaps.add(messageMap);
 		}
 		JSONArray jsonArray = JSONArray.fromObject(messageMaps);

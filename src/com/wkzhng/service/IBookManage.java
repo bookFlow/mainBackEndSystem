@@ -12,7 +12,7 @@ public interface IBookManage {
 	public BookDetails getBookDetailsInfo(int bookId);
 	public Book getBookById(int bookId);
 	public List<Comment> getComments(int bookId);
-	public String modifyStatus(int bookId);
-	public String addBook(String userName, String name, Double x, Double y, String description, 
+	public String modifyStatus(int bookId, int status);
+	public String addBook(String userName, String name, Double x, Double y, long time, String description, 
 			String productor, String company, String images, Double price, String pName);
 }

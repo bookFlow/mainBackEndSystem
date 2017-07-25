@@ -26,6 +26,7 @@ public class SendMsgAction implements Action{
 	private String y;    //地点坐标y 纬度
 	private String pname; //地点名称
 	private String time; //时间
+	private String btime;
 	private Map<String, Object> dataMap;
 	
 	public Map<String, Object> getDataMap() {
@@ -34,6 +35,14 @@ public class SendMsgAction implements Action{
 	
 	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
+	}
+	
+	public String getBtime() {
+		return btime;
+	}
+	
+	public void setBtime(String btime) {
+		this.btime = btime;
 	}
 	
 	public String getRid() {
@@ -121,9 +130,6 @@ public class SendMsgAction implements Action{
 		System.out.println("SendMsgAction is working...");
 		dataMap = new HashMap<>();
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = dateFormat.parse(time);
-		
 		if(class_ == null)
 			class_ = "-1";
 		
@@ -136,9 +142,17 @@ public class SendMsgAction implements Action{
 		if(pname == null)
 			pname = "";
 		
+		if(btime == null)
+			btime = "1970-01-01 00:00:00";
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		//Date date = dateFormat.parse(time);
+		Date bdate = dateFormat.parse(btime);
+		
 		String result = messageManage.addMessage(msg, Integer.parseInt(rid), uid, Integer.parseInt(type), 
 				Integer.parseInt(class_), date.getTime(), Double.parseDouble(x), Double.parseDouble(y), 
-				pname);
+				pname, bdate.getTime());
 		
 		if(result.equals(Const.SUCCEED)){
 			dataMap.put("isSucceed", true);
